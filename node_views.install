@@ -1,0 +1,59 @@
+<?php
+
+/* Implementing the hook_schema */
+
+function node_views_schema(){
+	$schema = array();
+	$schema['node_views_options'] = array(
+		'desciption'=>'This table is to hold the settings of the node_views module.',
+		'fields'=>array(
+			'id'=>array(
+				'desciption'=>'Unique identifier for a node view',
+				'type'=>'serial',
+				'not null'=>TRUE,
+				),
+			'content_type'=>array(
+				'desciption'=>'Node ID of the node.',
+				'type'=>'varchar',
+				'length'=>255,
+				'not null'=>TRUE,
+				'default'=>'',
+				),
+			),
+		'primary key' => array('id'),
+		);
+	$schema['node_views_table'] = array(
+		'desciption'=>'This table stores the views of node.',
+		'fields'=>array(
+			'vid'=>array(
+				'desciption'=>'Unique identifier for a node view',
+				'type'=>'serial',
+				'unsigned'=>TRUE,
+				'not null'=>TRUE,
+				),
+			'nid'=>array(
+				'desciption'=>'The node id of the node.',
+				'type' => 'int',
+		        'unsigned' => TRUE,
+		        'not null' => TRUE,
+		        'default' => 0,
+				),
+			'views'=>array(
+				'desciption'=>'Total views of the node.',
+				'type' => 'int',
+		        'unsigned' => TRUE,
+		        'not null' => TRUE,
+		        'default' => 0,
+				),
+			'content_type'=>array(
+				'desciption'=>'Node ID of the node.',
+				'type'=>'varchar',
+				'length'=>255,
+				'not null'=>TRUE,
+				'default'=>'',
+				),
+			),
+		'primary key' => array('vid'),
+		);
+	return $schema;
+}

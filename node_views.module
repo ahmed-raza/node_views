@@ -1,0 +1,8 @@
+<?php
+
+/* Implementing hook_menu() */
+function node_views_menu(){
+	$items['admin/content/node_views'] = array(
+		'page callback'=>'node_views_statistics',
+		);
+}
