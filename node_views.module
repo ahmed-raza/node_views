@@ -2,7 +2,62 @@
 
 /* Implementing hook_menu() */
 function node_views_menu(){
+	$items = array();
 	$items['admin/content/node_views'] = array(
+		'title'=>'Node views statistics',
 		'page callback'=>'node_views_statistics',
+		'access callback'=>'user_access',
+		'access arguments'=>array('administer access control'),
 		);
+	$items['admin/config/node_views'] = array(
+		'title'=>'Node views configuration',
+		'page callback'=>'node_views_config',
+		'access callback'=>'user_access',
+		'access arguments'=>array('administer access control'),
+		);
+	return $items;
+}
+
+function node_views_statistics(){
+	$content = array();
+
+	$content['statistics'] = array(
+		'#type'=>'markup',
+		'#markup'=>'<p>Here you can see all the nodes total views.</p>',
+		);
+
+	return $content;
+}
+
+function node_views_config(){
+	return drupal_get_form('node_views_configuration_form');
+	dsm('hello');
+}
+
+function node_views_configuration_form($node, &$form_state){
+	$form = array();
+	$values = array(
+		'article'=>t('Article'),
+		'page'=>t('Basic Page'),
+		);
+	$form['content_type'] = array(
+		'#type'=>'checkboxes',
+		'#title'=>t('Select the content types'),
+		'#default_value'=>0,
+		'#options'=>drupal_map_assoc($values),
+		'#description'=>t('Select the content types for which you want the views to store.'),
+		'#access'=>TRUE,
+		);
+	$form['config_submit'] = array(
+		'#type'=>'submit',
+		'#value'=>'Save configuration',
+		);
+	return $form;
+}
+
+function node_views_configuration_form_validate(&$form, &$form_state){
+	if (isset($form_state['values']['content_type']['Article'])) {
+		# code...
+	}
+	dsm($form_state);
 }
