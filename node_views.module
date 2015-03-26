@@ -12,6 +12,7 @@ function node_views_menu(){
 		);
 	$items['admin/config/content/node_views'] = array(
 		'title'=>'Node views configuration',
+		'description'=>'Configure node views',
 		'page callback'=>'node_views_config',
 		'access callback'=>'user_access',
 		'access arguments'=>array('administer access control'),
