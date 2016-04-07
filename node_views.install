@@ -19,6 +19,13 @@ function node_views_schema(){
 				'not null'=>TRUE,
 				'default'=>'',
 				),
+			'count_view'=>array(
+				'desciption'=>'Count or not.',
+				'type' => 'int',
+		        'unsigned' => TRUE,
+		        'not null' => TRUE,
+		        'default' => 0,
+				),
 			),
 		'primary key' => array('id'),
 		);
